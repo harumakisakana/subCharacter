@@ -51,11 +51,12 @@ class SearchView(ListView):
                 if x in main_dia: 
                     sc.append(eval("diagram.objects.get(id=i.id)."+j))
                 x+=1
-            for j in sc: #メインで不利かつ候補のキャラで有利(j>=self.even)の数を数える
+            for j in sc: #メインで不利かつ候補のキャラで五分以上(j>=self.even)の数を数える
                 if j>=self.even:
                     count+=1
             self.c[i.name] = count
         submit_data=dict(sorted(self.c.items(), key=lambda x:x[1], reverse=True))
         return render(request,"search.html",{"submit":submit_data})
+    
 class indexView(TemplateView):
     template_name="index.html"
